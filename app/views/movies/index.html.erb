@@ -1,0 +1,35 @@
+<div class="container">
+<div class="jumbotron">
+<h1 class="text-center">RetFlix</h1>
+<h3 class="text-center">Welcome to RetFlix! See our collection of movies below.</h3>
+</div>
+</div>
+<div class="container">
+<%= render partial: 'search' %>
+<%= link_to "Add Movie", new_movie_path, class: 'btn btn-primary pull-right' %> <br> <br>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover" role="grid">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th> Release Year</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @movies.each do |movie| %>
+        <tr>
+          <td><%= movie.title %></td>
+          <td><%= movie.description %></td>
+          <td><%= movie.year_released %></td>
+          <td>
+            <%= link_to "Edit", edit_movie_path(movie.id) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%= will_paginate class: 'pagination-sm', renderer: BootstrapPagination::Rails %>
+</div>
